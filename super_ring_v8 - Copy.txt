@@ -98,7 +98,7 @@ ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 local MainFrame = Instance.new("Frame")
 MainFrame.Size = UDim2.new(0,220,0,190)
 MainFrame.Position = UDim2.new(0.5,-110,0.5,-95)
-MainFrame.BackgroundColor3 = Color3.fromRGB(0,102,51)
+MainFrame.BackgroundColor3 = Color3.fromRGB(235,235,235)
 MainFrame.BorderSizePixel = 0
 MainFrame.Parent = ScreenGui
 
@@ -109,9 +109,9 @@ UICorner.Parent = MainFrame
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1,0,0,40)
 Title.Position = UDim2.new(0,0,0,0)
-Title.Text = "Lil0darkie6 Rings v8"
-Title.TextColor3 = Color3.fromRGB(255,255,255)
-Title.BackgroundColor3 = Color3.fromRGB(0,153,76)
+Title.Text = "Lil0darkie6 Rings v8.1 Recolored"
+Title.TextColor3 = Color3.fromRGB(0,0,0)
+Title.BackgroundColor3 = Color3.fromRGB(255,255,255)
 Title.Font = Enum.Font.Fondamento
 Title.TextSize = 22
 Title.Parent = MainFrame
@@ -125,7 +125,7 @@ local ToggleButton = Instance.new("TextButton")
 ToggleButton.Size = UDim2.new(0.8,0,0,35)
 ToggleButton.Position = UDim2.new(0.1,0,0.3,0)
 ToggleButton.Text = "Off"
-ToggleButton.BackgroundColor3 = Color3.fromRGB(255,0,0)
+ToggleButton.BackgroundColor3 = Color3.fromRGB(0,0,0)
 ToggleButton.TextColor3 = Color3.fromRGB(255,255,255)
 ToggleButton.Font = Enum.Font.Fondamento
 ToggleButton.TextSize = 15
@@ -138,7 +138,7 @@ local DecreaseRadius = Instance.new("TextButton")
 DecreaseRadius.Size = UDim2.new(0.2,0,0,35)
 DecreaseRadius.Position = UDim2.new(0.1,0,0.6,0)
 DecreaseRadius.Text = "<"
-DecreaseRadius.BackgroundColor3 = Color3.fromRGB(255,255,0)
+DecreaseRadius.BackgroundColor3 = Color3.fromRGB(255,0,0)
 DecreaseRadius.TextColor3 = Color3.fromRGB(0,0,0)
 DecreaseRadius.Font = Enum.Font.Fondamento
 DecreaseRadius.TextSize = 18
@@ -151,7 +151,7 @@ local IncreaseRadius = Instance.new("TextButton")
 IncreaseRadius.Size = UDim2.new(0.2,0,0,35)
 IncreaseRadius.Position = UDim2.new(0.7,0,0.6,0)
 IncreaseRadius.Text = ">"
-IncreaseRadius.BackgroundColor3 = Color3.fromRGB(255,255,0)
+IncreaseRadius.BackgroundColor3 = Color3.fromRGB(0,255,0)
 IncreaseRadius.TextColor3 = Color3.fromRGB(0,0,0)
 IncreaseRadius.Font = Enum.Font.Fondamento
 IncreaseRadius.TextSize = 18
@@ -164,8 +164,8 @@ local RadiusDisplay = Instance.new("TextLabel")
 RadiusDisplay.Size = UDim2.new(0.4,0,0,35)
 RadiusDisplay.Position = UDim2.new(0.3,0,0.6,0)
 RadiusDisplay.Text = "Radius: 50"
-RadiusDisplay.BackgroundColor3 = Color3.fromRGB(255,255,0)
-RadiusDisplay.TextColor3 = Color3.fromRGB(0,0,0)
+RadiusDisplay.BackgroundColor3 = Color3.fromRGB(0,0,0)
+RadiusDisplay.TextColor3 = Color3.fromRGB(255,255,255)
 RadiusDisplay.Font = Enum.Font.Fondamento
 RadiusDisplay.TextSize = 15
 RadiusDisplay.Parent = MainFrame
@@ -176,8 +176,8 @@ RadiusCorner.Parent = RadiusDisplay
 local Watermark = Instance.new("TextLabel")
 Watermark.Size = UDim2.new(1,0,0,20)
 Watermark.Position = UDim2.new(0,0,1,-20)
-Watermark.Text = "Lil0darkie6 Rings [V8] by Zeus!"
-Watermark.TextColor3 = Color3.fromRGB(255,255,255)
+Watermark.Text = "Lil0darkie6 Rings [V8.1] Recolor"
+Watermark.TextColor3 = Color3.fromRGB(255,0,0)
 Watermark.BackgroundTransparency = 1
 Watermark.Font = Enum.Font.Fondamento
 Watermark.TextSize = 14
@@ -283,8 +283,8 @@ end)
 -- Button functionality
 ToggleButton.MouseButton1Click:Connect(function()
     ringPartsEnabled = not ringPartsEnabled
-    ToggleButton.Text = ringPartsEnabled and "Ring Parts On" or "Ring Parts Off"
-    ToggleButton.BackgroundColor3 = ringPartsEnabled and Color3.fromRGB(50,205,50) or Color3.fromRGB(255,0,0)
+    ToggleButton.Text = ringPartsEnabled and "Activated" or "Deactivated"
+    ToggleButton.BackgroundColor3 = ringPartsEnabled and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
     playSound("12221967")
 end)
 DecreaseRadius.MouseButton1Click:Connect(function()
@@ -305,4 +305,15 @@ local thumbSize = Enum.ThumbnailSize.Size420x420
 local content = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
 StarterGui:SetCore("SendNotification",{Title="Lil0darkie6 Rings V8", Text="Modified", Icon=content, Duration=5})
 StarterGui:SetCore("SendNotification",{Title="Credits", Text="Original by Yumm Scriptblox", Icon=content, Duration=5})
-StarterGui:SetCore("SendNotification",{Title="Credits", Text="Edited by Zeus", Icon=content, Duration=5})
+StarterGui:SetCore("SendNotification",{Title="Credits", Text="Edited by Zeus and Recolored by SDCard_Arch", Icon=content, Duration=5})
+
+-- Chat message
+local function SendChatMessage(msg)
+    if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+        local textChannel = TextChatService.TextChannels.RBXGeneral
+        textChannel:SendAsync(msg)
+    else
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg,"All")
+    end
+end
+SendChatMessage("Script By LIL0DARKIE6 Recolored By SdCard_Arch")
